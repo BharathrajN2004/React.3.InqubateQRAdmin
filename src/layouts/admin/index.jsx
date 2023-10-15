@@ -64,13 +64,13 @@ export default function Admin(props) {
       <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
         {/* Main Content */}
         <main
-          className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
+          className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[270px]`}
         >
           {/* Routes */}
           <div className="h-full">
             <Navbar
               onOpenSidenav={() => setOpen(true)}
-              logoText={"Horizon UI Tailwind React"}
+              logoText={"inqubateQR"}
               brandText={currentRoute}
               secondary={getActiveNavbar(routes)}
               {...rest}
