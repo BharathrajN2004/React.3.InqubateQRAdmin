@@ -3,6 +3,7 @@ import { firestore } from './config';
 
 const addUser = async (email, name, password) => {
   const userData = {
+    email: email,
     name: name,
     password: password
   };

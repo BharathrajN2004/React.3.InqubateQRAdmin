@@ -7,54 +7,33 @@ import NFt6 from "assets/img/nfts/Nft6.png";
 import avatar1 from "assets/img/avatars/avatar1.png";
 import avatar2 from "assets/img/avatars/avatar2.png";
 import avatar3 from "assets/img/avatars/avatar3.png";
+import { useSelector } from "react-redux";
 
 import HistoryCard from "./components/HistoryCard";
 import TopCreatorTable from "./components/TableTopCreators";
 import NftCard from "components/card/NftCard";
+import { useState } from "react";
 
 const Inventories = () => {
+  const [selectedDepart, setSelectedDepartment] = useState();
+  const { departments } = useSelector(state => state.departments);
+
   return (
     <div className="col-span-1 h-fit w-full xl:col-span-1 2xl:col-span-2">
-      {/* top side section */}
-      <HistoryCard />
 
       <div className="mb-4 mt-5 flex flex-col justify-between px-4 md:flex-row md:items-center">
         <h4 className="ml-1 text-2xl font-bold text-navy-700 dark:text-white">
           Trending NFTs
         </h4>
         <ul className="mt-4 grid grid-cols-2 gap-5 md:grid-cols-5 items-center justify-between md:mt-0 md:justify-end md:!gap-5 2xl:!gap-12">
-          <li>
+          {Array.from(departments).map((value, index) => (<li>
             <button
               className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-              href=" "
+              onClick={() => { }}
             >
-              Art
+              {value.id.toUpperCase()}
             </button>
-          </li>
-          <li>
-            <button
-              className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-              href=" "
-            >
-              Music
-            </button>
-          </li>
-          <li>
-            <button
-              className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-              href=" "
-            >
-              Collection
-            </button>
-          </li>
-          <li>
-            <button
-              className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-              href=" "
-            >
-              Sports
-            </button>
-          </li>
+          </li>))}
         </ul>
       </div>
 

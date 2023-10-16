@@ -8,7 +8,6 @@ export const barChartDataDailyTraffic = (dataList) => {
 }
 
 export const barChartOptionsDailyTraffic = (datalabel) => {
-  console.log(datalabel);
   return {
     chart: {
       toolbar: {
