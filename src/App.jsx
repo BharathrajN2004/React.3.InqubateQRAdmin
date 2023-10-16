@@ -15,7 +15,7 @@ const App = () => {
 
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const [userDetail, setUserDetail] = useState(null)
+  const [userDetail, setUserDetail] = useState(null);
   let constUser = {};
 
   useEffect(() => {
