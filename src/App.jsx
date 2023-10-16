@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot, collection } from 'firebase/firestore';
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
+import { addUsers } from "./redux/usersListSlice";
+import { addDepartments } from "./redux/departmentSlice";
 
 import { firestore, auth } from "./Firebase/config";
 import { login } from "redux/authSlice";
@@ -12,13 +14,33 @@ import LoginPage from "./layouts/auth/loginPage";
 import SignupPage from "./layouts/auth/signupPage";
 
 const App = () => {
-
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [userDetail, setUserDetail] = useState(null)
   let constUser = {};
 
   useEffect(() => {
+    const userQuerySnapshot =
+      onSnapshot(collection(firestore, "users"), (querySnapshot) => {
+        const users = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          users.push(data);
+        });
+        dispatch(addUsers(users));
+      });
+
+    // DataStore Data
+    const dataStoreQuerySnapshot = onSnapshot(collection(firestore, "datastore/incubation/category"), (querySnapshot) => {
+      const dataCatagory = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const id = doc.id;
+        dataCatagory.push({ id, ...data });
+      });
+      dispatch(addDepartments(dataCatagory));
+    });
+
     const fetchUserData = async (email) => {
       try {
         // Get the user document based on the email
@@ -62,6 +84,8 @@ const App = () => {
     // Return the cleanup function
     return () => {
       unsubscribe(); // Unsubscribe from the auth state change listener
+      userQuerySnapshot();
+      dataStoreQuerySnapshot();
     };
   }, [auth]);
 
