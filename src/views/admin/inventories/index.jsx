@@ -15,21 +15,22 @@ import NftCard from "components/card/NftCard";
 import { useState } from "react";
 
 const Inventories = () => {
-  const [selectedDepart, setSelectedDepartment] = useState();
-  const { departments } = useSelector(state => state.departments);
+  const [selectedDepart, setSelectedDepartment] = useState(null);
+  const { products, departments } = useSelector(state => state.departments);
 
   return (
     <div className="col-span-1 h-fit w-full xl:col-span-1 2xl:col-span-2">
 
       <div className="mb-4 mt-5 flex flex-col justify-between px-4 md:flex-row md:items-center">
         <h4 className="ml-1 text-2xl font-bold text-navy-700 dark:text-white">
-          Trending NFTs
+          Products of {selectedDepart!=null? selectedDepart.toUpperCase() :"ALL"}
         </h4>
         <ul className="mt-4 grid grid-cols-2 gap-5 md:grid-cols-5 items-center justify-between md:mt-0 md:justify-end md:!gap-5 2xl:!gap-12">
           {Array.from(departments).map((value, index) => (<li>
             <button
-              className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-              onClick={() => { }}
+              className={selectedDepart==value.id.toLowerCase()?"rounded-md px-1.5 border-blue-300 bg-blue-100 text-blue-700":""+"text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white "}
+              onClick={() => setSelectedDepartment(value.id.toLowerCase())}
+              key={value.id}
             >
               {value.id.toUpperCase()}
             </button>
@@ -39,87 +40,13 @@ const Inventories = () => {
 
       {/* NFTs trending card */}
       <div className="z-20 grid grid-cols-1 gap-5 md:grid-cols-3">
+        
         <NftCard
-          bidders={[avatar1, avatar2, avatar3]}
-          title="Abstract Colors"
-          author="Esthera Jackson"
-          price="0.91"
-          image={NFt3}
-        />
-        <NftCard
-          bidders={[avatar1, avatar2, avatar3]}
-          title="ETH AI Brain"
-          author="Nick Wilson"
-          price="0.7"
-          image={NFt2}
-        />
-        <NftCard
-          bidders={[avatar1, avatar2, avatar3]}
           title="Mesh Gradients"
           author="Will Smith"
           price="2.91"
-          image={NFt4}
-        />
-        <NftCard
-          bidders={[avatar1, avatar2, avatar3]}
-          title="Mesh Gradients"
-          author="Will Smith"
-          price="2.91"
-          image={NFt4}
-        />
-        <NftCard
-          bidders={[avatar1, avatar2, avatar3]}
-          title="Mesh Gradients"
-          author="Will Smith"
-          price="2.91"
-          image={NFt4}
-        />
-        <NftCard
-          bidders={[avatar1, avatar2, avatar3]}
-          title="Mesh Gradients"
-          author="Will Smith"
-          price="2.91"
-          image={NFt4}
-        />
-        <NftCard
-          bidders={[avatar1, avatar2, avatar3]}
-          title="Mesh Gradients"
-          author="Will Smith"
-          price="2.91"
-          image={NFt4}
-        />
-
-      </div>
-
-      {/* Recenlty Added setion */}
-      <div className="mb-5 mt-5 flex items-center justify-between px-[26px]">
-        <h4 className="text-2xl font-bold text-navy-700 dark:text-white">
-          Recently Added
-        </h4>
-      </div>
-
-      {/* Recently Add NFTs */}
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-        <NftCard
-          bidders={[avatar1, avatar2, avatar3]}
-          title="Abstract Colors"
-          author="Esthera Jackson"
-          price="0.91"
-          image={NFt4}
-        />
-        <NftCard
-          bidders={[avatar1, avatar2, avatar3]}
-          title="ETH AI Brain"
-          author="Nick Wilson"
-          price="0.7"
-          image={NFt5}
-        />
-        <NftCard
-          bidders={[avatar1, avatar2, avatar3]}
-          title="Mesh Gradients"
-          author="Will Smith"
-          price="2.91"
-          image={NFt6}
+          description = "sdrfg sdfg"
+          qrcode="kjhsdg"
         />
       </div>
     </div>

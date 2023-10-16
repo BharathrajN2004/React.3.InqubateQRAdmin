@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     departments: [],
+    products: [],
 };
 
 const DepartmentSlice = createSlice({
@@ -10,10 +11,13 @@ const DepartmentSlice = createSlice({
     reducers: {
         addDepartments: (state, action) => {
             state.departments = action.payload;
+        },
+        addProducts: (state, action)=>{
+            state.products = action.payload;
         }
     }
 });
 
 export default DepartmentSlice.reducer;
 
-export const { addDepartments } = DepartmentSlice.actions;
+export const { addDepartments, addProducts } = DepartmentSlice.actions;

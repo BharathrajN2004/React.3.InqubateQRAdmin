@@ -24,7 +24,6 @@ const DailyTraffic = () => {
     setNameList(departmentsNameList);
     setProductsCount(departmentsProductCounts);
     maximumProducts = Math.max(...departmentsProductCounts);
-    console.log(departmentsNameList, departmentsProductCounts);
     departmentWithMaxProducts = departmentsNameList[departmentsProductCounts.indexOf(maximumProducts)];
   }, [departments])
 

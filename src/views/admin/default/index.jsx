@@ -7,7 +7,7 @@ import DailyTraffic from "views/admin/default/components/DailyTraffic";
 
 const Dashboard = () => {
   const { usersList } = useSelector(state => state.usersList);
-  const { log, departments } = useSelector(state => state.departments);
+  const { products,departments } = useSelector(state => state.departments);
 
   return (
     <div>
@@ -22,7 +22,7 @@ const Dashboard = () => {
         <Widget
           icon={<IoDocuments className="h-6 w-6" />}
           title={"Products"}
-          subtitle={log.length ?? 0}
+          subtitle={products.length ?? 0}
         />
         <Widget
           icon={<MdDashboard className="h-6 w-6" />}

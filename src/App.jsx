@@ -4,7 +4,7 @@ import { doc, getDoc, onSnapshot, collection } from 'firebase/firestore';
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addUsers } from "./redux/usersListSlice";
-import { addDepartments } from "./redux/departmentSlice";
+import { addDepartments, addProducts } from "./redux/departmentSlice";
 
 import { firestore, auth } from "./Firebase/config";
 import { login } from "redux/authSlice";
@@ -33,12 +33,17 @@ const App = () => {
     // DataStore Data
     const dataStoreQuerySnapshot = onSnapshot(collection(firestore, "datastore/incubation/category"), (querySnapshot) => {
       const dataCatagory = [];
+      const products = [];
       querySnapshot.forEach((doc) => {
         const data = doc.data();
+        for (var i in data){
+          products.push(data[i]);
+        }
         const id = doc.id;
         dataCatagory.push({ id, ...data });
       });
       dispatch(addDepartments(dataCatagory));
+      dispatch(addProducts(products));
     });
 
     const fetchUserData = async (email) => {
