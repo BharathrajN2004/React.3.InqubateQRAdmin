@@ -1,42 +1,32 @@
-import CheckTable from "./components/CheckTable";
+import { useSelector } from "react-redux";
 
-import {
-  columnsDataDevelopment,
-  columnsDataCheck,
-  columnsDataColumns,
-  columnsDataComplex,
-} from "./variables/columnsData";
-import tableDataDevelopment from "./variables/tableDataDevelopment.json";
-import tableDataCheck from "./variables/tableDataCheck.json";
-import tableDataColumns from "./variables/tableDataColumns.json";
-import tableDataComplex from "./variables/tableDataComplex.json";
-import DevelopmentTable from "./components/DevelopmentTable";
-import ColumnsTable from "./components/ColumnsTable";
-import ComplexTable from "./components/ComplexTable";
+import { tableColumnsTopCreators } from "./variables/tableColumnsTopCreators.js";
+import TopCreatorTable from "../inventories/components/TableTopCreators";
+
 
 const Tables = () => {
+  const { usersList } = useSelector(state => state.usersList);
+
+  const definedUsersList = [];
+  for (var user in usersList) {
+    definedUsersList.push({
+      "name": [
+        usersList[user].name,
+        usersList[user].photo,
+      ],
+      "email": usersList[user].email,
+    })
+  }
+
   return (
-    <div>
-      <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">
-        <DevelopmentTable
-          columnsData={columnsDataDevelopment}
-          tableData={tableDataDevelopment}
-        />
-        <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} />
-      </div>
-
-      <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">
-        <ColumnsTable
-          columnsData={columnsDataColumns}
-          tableData={tableDataColumns}
-        />
-
-        <ComplexTable
-          columnsData={columnsDataComplex}
-          tableData={tableDataComplex}
-        />
-      </div>
+    <div className="mt-5 h-full w-full rounded-xl">
+      <TopCreatorTable
+        extra="mb-5"
+        tableData={definedUsersList}
+        columnsData={tableColumnsTopCreators}
+      />
     </div>
+
   );
 };
 
