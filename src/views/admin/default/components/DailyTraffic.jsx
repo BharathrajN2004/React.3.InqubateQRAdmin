@@ -2,31 +2,27 @@ import { useState, useEffect } from "react";
 import BarChart from "components/charts/BarChart";
 import { useSelector } from "react-redux";
 
-import { barChartDataDailyTraffic } from "variables/charts";
-import { barChartOptionsDailyTraffic } from "variables/charts";
-import { MdArrowDropUp } from "react-icons/md";
+import { barChartOptionsDailyTraffic , barChartDataDailyTraffic} from "variables/charts";
 import Card from "components/card";
 
 const DailyTraffic = () => {
-  const { departments } = useSelector(state => state.departments);
+  const { departments } = useSelector((state) => state.departments);
   const [nameList, setNameList] = useState([]);
   const [productsCount, setProductsCount] = useState([]);
   let departmentsNameList = [];
   let departmentsProductCounts = [];
-  let maximumProducts = 0;
-  let departmentWithMaxProducts = "";
+  let [maximumProducts,setMaxProducts] = useState(0);
+  let [departmentWithMaxProducts, setDepWithMaxProducts] = useState("");
 
   useEffect(() => {
-    departments.forEach((value, index) => {
-      departmentsNameList.push(value.id);
-      departmentsProductCounts.push(Object.keys(value).length - 1);
-    })
+    // Calculate data and update state when 'departments' change
+    departmentsNameList = departments.map((value) => value.id);
+    departmentsProductCounts = departments.map((value) => Object.keys(value).length - 1);
     setNameList(departmentsNameList);
     setProductsCount(departmentsProductCounts);
-    maximumProducts = Math.max(...departmentsProductCounts);
-    departmentWithMaxProducts = departmentsNameList[departmentsProductCounts.indexOf(maximumProducts)];
-  }, [departments])
-
+    setMaxProducts(Math.max(...departmentsProductCounts));
+    setDepWithMaxProducts(departmentsNameList[departmentsProductCounts.indexOf(maximumProducts)]);
+  }, [departments]);
 
   return (
     <Card extra="pb-7 p-[20px]">
@@ -38,7 +34,7 @@ const DailyTraffic = () => {
           <p className="text-[34px] font-bold text-navy-700 dark:text-white">
             {maximumProducts.toString() + " "}
             <span className="text-sm font-medium leading-6 text-gray-600">
-              in {departmentWithMaxProducts}
+              in {departmentWithMaxProducts.toUpperCase()}
             </span>
           </p>
         </div>
@@ -46,8 +42,8 @@ const DailyTraffic = () => {
 
       <div className="h-[300px] w-full pt-10 pb-0">
         <BarChart
-          chartData={barChartDataDailyTraffic(nameList)}
-          chartOptions={barChartOptionsDailyTraffic(productsCount)}
+          chartData={barChartDataDailyTraffic(productsCount)}
+          chartOptions={barChartOptionsDailyTraffic(nameList)}
         />
       </div>
     </Card>

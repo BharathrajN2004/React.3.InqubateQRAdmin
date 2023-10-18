@@ -17,6 +17,7 @@
     "@testing-library/user-event": "^13.5.0",
     "apexcharts": "3.35.5",
     "firebase": "^10.4.0",
+    "flowbite-react": "^0.6.4",
     "framer-motion": "^7.10.2",
     "react": "^18.2.0",
     "react-apexcharts": "1.4.0",

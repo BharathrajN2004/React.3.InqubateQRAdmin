@@ -1,13 +1,13 @@
-export const barChartDataDailyTraffic = (dataList) => {
+export const barChartDataDailyTraffic = (dataValue) => {
   return [
     {
       name: "Daily Traffic",
-      data: dataList,
+      data: dataValue,
     },
   ];
 }
 
-export const barChartOptionsDailyTraffic = (datalabel) => {
+export const barChartOptionsDailyTraffic = (dataLable) => {
   return {
     chart: {
       toolbar: {
@@ -29,7 +29,7 @@ export const barChartOptionsDailyTraffic = (datalabel) => {
       theme: "dark",
     },
     xaxis: {
-      categories: datalabel,
+      categories:  dataLable,
       show: false,
       labels: {
         show: true,
