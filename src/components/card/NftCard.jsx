@@ -46,7 +46,7 @@ const NftCard = ({
           <div className="flex h-20 w-20">
             <QRCode
               value={qrcode}
-              className="mb-3 h-full w-full rounded-xl p-1"
+              className="mb-3 h-full w-full "
             />
           </div>
         </div>

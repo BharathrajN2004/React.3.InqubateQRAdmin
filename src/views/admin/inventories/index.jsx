@@ -1,8 +1,4 @@
 import { useSelector } from "react-redux";
-import { ref, listAll, getDownloadURL } from "firebase/storage";
-
-import { storage } from "../../../Firebase/config";
-
 import NftCard from "components/card/NftCard";
 import { useEffect, useState } from "react";
 
@@ -30,27 +26,6 @@ const Inventories = () => {
         return usersList[i].name;
       }
     }
-  };
-
-  const getImageUrlList = (path) => {
-    const listRef = ref(storage, path);
-    const urlList = [];
-    listAll(listRef)
-      .then((res) => {
-        res.items.forEach((itemRef) => {
-          getDownloadURL(ref(storage, itemRef._location.path_))
-            .then((url) => {
-              urlList.push(url);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    return urlList;
   };
 
   return (
@@ -86,25 +61,32 @@ const Inventories = () => {
       </div>
 
       {/* NFTs trending card */}
-      <div className="z-20 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {Object.entries(products).map(([key, value]) => {
-          const imageurls = getImageUrlList(value.path);
-          console.log(value.spec);
-          return (
-            <NftCard
-              title={value.name}
-              author={findUserName(value.faculty)}
-              price={value.price}
-              date={value.date}
-              room={value.room}
-              description={value.spec}
-              qrcode={key}
-              urlList= {imageurls}
-              key={key}
-            />
-          );
-        })}
-      </div>
+      {
+        Object.entries(products).length == 0 ? (
+          <center>
+            <p className="mt-20 text-lg font-medium text-gray-900 dark:text-white">
+              No Products Have Been Added Till Now !!
+            </p>
+          </center>
+        ) : 
+        <div className="z-20 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {Object.entries(products).map(([key, value]) => {
+            return (
+              <NftCard
+                title={value.name}
+                author={findUserName(value.faculty)}
+                price={value.price}
+                date={value.date}
+                room={value.room}
+                description={value.spec}
+                qrcode={key}
+                urlList={value.imageURLs}
+                key={key}
+              />
+            );
+          })}
+        </div>
+      }
     </div>
   );
 };

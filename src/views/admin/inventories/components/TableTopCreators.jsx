@@ -87,6 +87,12 @@ function TopCreatorTable(props) {
                           {cell.value}
                         </p>
                       );
+                    }else if (cell.column.Header === "Password") {
+                      data = (
+                        <p className="text-sm font-medium text-navy-700 dark:text-white">
+                          {cell.value}
+                        </p>
+                      );
                     }
                     return (
                       <td

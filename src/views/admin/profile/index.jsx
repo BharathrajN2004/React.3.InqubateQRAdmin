@@ -9,9 +9,9 @@ const ProfileOverview = () => {
         <div className="col-span-1 lg:!mb-0">
           <Banner />
         </div>
-        <div className="col-span-1 lg:col-span-1 lg:mb-0 3xl:col-span-1">
+        {/* <div className="col-span-1 lg:col-span-1 lg:mb-0 3xl:col-span-1">
           <General />
-        </div>
+        </div> */}
       </div>
       {/* all project & ... */}
 

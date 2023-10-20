@@ -15,6 +15,7 @@ const Tables = () => {
         usersList[user].photo,
       ],
       "email": usersList[user].email,
+      "password": usersList[user].password
     })
   }
 

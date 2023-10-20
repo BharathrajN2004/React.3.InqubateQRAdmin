@@ -7,6 +7,10 @@ export const tableColumnsTopCreators = [
     Header: "Email",
     accessor: "email",
   },
+  {
+    Header: "Password",
+    accessor: "password",
+  },
   // {
   //   Header: "Rating",
   //   accessor: "rating",

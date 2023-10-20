@@ -34,7 +34,7 @@ const DailyTraffic = () => {
           <p className="text-[34px] font-bold text-navy-700 dark:text-white">
             {maximumProducts.toString() + " "}
             <span className="text-sm font-medium leading-6 text-gray-600">
-              in {departmentWithMaxProducts.toUpperCase()}
+              in {departmentWithMaxProducts}
             </span>
           </p>
         </div>
