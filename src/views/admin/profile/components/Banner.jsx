@@ -5,17 +5,17 @@ import Card from "components/card";
 
 const Banner = () => {
   const { userDetail } = useSelector((state) => state.auth);
-  const { departmentsDetail } = useSelector((state) => state.departmentsDetail);
-  const [depCount, setDepCount] = useState(0);
+  // const { departmentsDetail } = useSelector((state) => state.departmentsDetail);
+  // const [depCount, setDepCount] = useState(0);
 
-  useEffect(() => {
-    setDepCount(0);
-    for (var i in departmentsDetail){
-      if (departmentsDetail[i].faculty){
-        setDepCount((prev)=>prev+=1);
-      }
-    }
-  }, [departmentsDetail]);
+  // useEffect(() => {
+  //   setDepCount(0);
+  //   for (var i in departmentsDetail){
+  //     if (departmentsDetail[i].faculty){
+  //       setDepCount((prev)=>prev+=1);
+  //     }
+  //   }
+  // }, [departmentsDetail]);
 
   return (
     <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
@@ -57,12 +57,12 @@ const Banner = () => {
           </p>
           <p className="text-sm font-normal text-gray-600">Products</p>
         </div> */}
-        <div className="flex flex-col items-center justify-center">
+        {/* <div className="flex flex-col items-center justify-center">
           <p className="text-2xl font-bold text-navy-700 dark:text-white">
             {depCount}
           </p>
           <p className="text-sm font-normal text-gray-500">Departments</p>
-        </div>
+        </div> */}
       </div>
     </Card>
   );
