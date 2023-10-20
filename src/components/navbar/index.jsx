@@ -5,12 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { userSignOut } from "../../Firebase/auth";
-import { BsArrowBarUp } from "react-icons/bs";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
-import {
-  IoMdNotificationsOutline,
-} from "react-icons/io";
-import avatar from "assets/img/avatars/avatar4.png";
+import avatar from "../../assets/img/profile/boy.png"
 
 const Navbar = (props) => {
   const navigate = useNavigate();

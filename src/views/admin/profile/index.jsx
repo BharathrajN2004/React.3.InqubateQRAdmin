@@ -1,6 +1,5 @@
 import Banner from "./components/Banner";
 import General from "./components/General";
-import Project from "./components/Project";
 
 const ProfileOverview = () => {
   return (
