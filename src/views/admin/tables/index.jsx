@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 import { tableColumnsTopCreators } from "./variables/tableColumnsTopCreators.js";
-import TopCreatorTable from "../inventories/components/TableTopCreators";
+import TopCreatorTable from "./components/TableTopCreators.jsx";
 
 
 const Tables = () => {
